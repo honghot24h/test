@@ -6,8 +6,52 @@
     <title id="page-title">Đang tải nội dung...</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS MỚI: Đưa quảng cáo ra toàn màn hình, đè lên tất cả */
+        .ads-overlay-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99999; /* Luôn nằm trên cùng */
+            display: none; /* Hiện bằng JS */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .ads-content-fixed {
+            position: relative;
+            max-width: 90%;
+            text-align: center;
+        }
+        .ads-content-fixed img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            border: 2px solid #fff;
+        }
+        .close-ads-fixed {
+            background: #ff0000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
+
+    <div id="shopee-ads-overlay" class="ads-overlay-fixed" onclick="handleTrapClick()">
+        <div class="ads-content-fixed">
+            <div class="close-ads-fixed">X Đóng quảng cáo</div>
+            <img src="images/shopee-ads.webp" alt="Quảng cáo Shopee">
+        </div>
+    </div>
 
     <header>
         <div class="container">
@@ -39,13 +83,6 @@
                         <source src="" type="video/mp4">
                         Trình duyệt không hỗ trợ.
                     </video>
-
-                    <div id="shopee-ads-overlay" class="ads-overlay" style="display: none; cursor: pointer;" onclick="handleTrapClick()">
-                        <div class="ads-content">
-                            <div class="close-ads">X Đóng quảng cáo</div>
-                            <img src="images/shopee-ads.webp" alt="Quảng cáo Shopee">
-                        </div>
-                    </div>
                 </div>
 
                 <div class="post-text" id="post-content-text" style="margin-top: 20px;">
@@ -70,7 +107,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Xinh Gái Tinh Quái - <strong>.</p>
+            <p>&copy; 2026 Xinh Gái Tinh Quái - <strong>.</strong></p>
         </div>
     </footer>
 
@@ -79,12 +116,11 @@
     </a>
 
     <script>
-        // Danh sách nội dung của 10 bài báo
         const dataPosts = {
             "1": { title: "‼️Giải cứu thành công bé trai 10 tuổi mắc kẹt giữa hai bức tường", video: "videos/video1.mp4", img: "images/thump1.jpg", content: "Sáng nay tại khu vực trung tâm đã xảy ra một sự việc thu hút hàng trăm người hiếu kỳ..." },
             "2": { title: "ĐÊM QUA TẠI TRUNG KÍNH - CẦU GIẤY ‼️", video: "videos/video2.mp4", img: "images/thumb2.jpg", content: "Dù nằm sâu trong hẻm nhưng quán lúc nào cũng tấp nập khách ra vào..." },
             "3": { title: "Thanh Hoá: Bjen c,ăng tai mỏ đá 🔪🔪🔨🔨🩸🥶", video: "videos/video3.mp4", img: "images/thumb3.jpg", content: "Bjen c,ăng tai mỏ đá 🔪🔪🔨🔨🩸🥶" },
-            "4": { title: "“Đường Nguyễn Hữu Thọ, đoạn gần cầu Kênh Tẻ (hướng từ Quận 7 sang Quận 4) xảy ra sự cố giữa xe chở rác và một tấm thép lớn. Tài xế xe rác không qua khỏi", video: "videos/video4.mp4", img: "images/thumb4.jpg", content: "" },
+            "4": { title: "Đường Nguyễn Hữu Thọ, đoạn gần cầu Kênh Tẻ (hướng từ Quận 7 sang Quận 4) xảy ra sự cố giữa xe chở rác và một tấm thép lớn. Tài xế xe rác không qua khỏi", video: "videos/video4.mp4", img: "images/thumb4.jpg", content: "" },
             "5": { title: "Giải mã trào lưu nhảy múa mới đang viral rần rần", video: "videos/video5.mp4", img: "images/thumb5.jpg", content: "Chỉ với một điệu nhảy đơn giản kết hợp nền nhạc bắt tai, trend này đã thu hút hàng triệu lượt xem..." },
             "6": { title: "Phóng sự: Góc khuất nghề làm nội dung trên mạng", video: "videos/video6.mp4", img: "images/thumb6.jpg", content: "Phía sau những nụ cười, những video triệu view hào nhoáng là cả một quá trình làm việc đầy áp lực..." },
             "7": { title: "Lật tẩy chiêu trò 'sống ảo' của một số hot boy, hot girl", video: "videos/video7.mp4", img: "images/thumb7.jpg", content: "Bóc trần sự thật đằng sau những khung hình check-in sang chảnh..." },
@@ -97,6 +133,9 @@
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
 
+            // HIỆN QUẢNG CÁO NGAY LẬP TỨC KHI VỪA VÀO TRANG
+            document.getElementById('shopee-ads-overlay').style.display = 'flex';
+
             if (id && dataPosts[id]) {
                 const post = dataPosts[id];
                 document.getElementById('page-title').innerText = post.title;
@@ -104,11 +143,6 @@
                 document.getElementById('post-content-text').innerText = post.content;
                 document.getElementById('main-video').src = post.video;
                 document.getElementById('main-img').src = post.img;
-
-                // TỰ ĐỘNG HIỆN QUẢNG CÁO SAU 5 GIÂY
-                setTimeout(function() {
-                    document.getElementById('shopee-ads-overlay').style.display = 'flex';
-                }, 5000);
             } else {
                 document.getElementById('main-title').innerText = "Bài viết không tồn tại!";
                 document.getElementById('post-content-text').innerText = "Vui lòng quay lại trang chủ.";
@@ -117,15 +151,10 @@
             }
         };
 
-        // HÀM XỬ LÝ BẪY CLICK - NHẤN ĐÂU CŨNG NHẢY LINK
         function handleTrapClick() {
-            // Mở link Shopee của Thuận
             window.open("https://s.shopee.vn/7fVPcJNUjm", "_blank");
-            
-            // Ẩn quảng cáo để khách xem tiếp video sau khi đã click
             document.getElementById('shopee-ads-overlay').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
