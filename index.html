@@ -6,8 +6,52 @@
     <title>Hóng Hớt Đường Phố - Trang Chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS CHO QUẢNG CÁO TOÀN TRANG */
+        .ads-overlay-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99999;
+            display: none; /* Hiện bằng JS */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .ads-content-fixed {
+            position: relative;
+            max-width: 90%;
+            text-align: center;
+        }
+        .ads-content-fixed img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            border: 2px solid #fff;
+        }
+        .close-ads-fixed {
+            background: #ff0000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
+
+    <div id="shopee-ads-home" class="ads-overlay-fixed" onclick="handleTrapClick()">
+        <div class="ads-content-fixed">
+            <div class="close-ads-fixed">X Đóng quảng cáo</div>
+            <img src="images/shopee-ads.webp" alt="Quảng cáo Shopee">
+        </div>
+    </div>
 
     <header>
         <div class="container">
@@ -61,8 +105,8 @@
                 <img src="images/thumb4.jpg" class="news-img" alt="tin 4">
                 <div class="news-info">
                     <div class="meta">Hôm qua • Công nghệ</div>
-                    <h3><a href="post.html?id=4">4.“Đường Nguyễn Hữu Thọ, đoạn gần cầu Kênh Tẻ (hướng từ Quận 7 sang Quận 4) xảy ra sự cố giữa xe chở rác và một tấm thép lớn. Tài xế xe rác không qua khỏi</a></h3>
-                    <p>“Đường Nguyễn Hữu Thọ, đoạn gần cầu Kênh Tẻ (hướng từ Quận 7 sang Quận 4) xảy ra sự cố giữa xe chở rác và một tấm thép lớn. Tài xế xe rác không qua khỏi</p>
+                    <h3><a href="post.html?id=4">4.“Đường Nguyễn Hữu Thọ, đoạn gần cầu Kênh Tẻ xảy ra sự cố...</a></h3>
+                    <p>“Đường Nguyễn Hữu Thọ, đoạn gần cầu Kênh Tẻ xảy ra sự cố...</p>
                 </div>
             </article>
 
@@ -72,51 +116,6 @@
                     <div class="meta">Hôm qua • Xu hướng</div>
                     <h3><a href="post.html?id=5">5. Giải mã trào lưu nhảy múa mới đang viral rần rần</a></h3>
                     <p>Nguồn gốc trend này từ đâu ra mà đi đâu cũng thấy mọi người quay clip đu theo?...</p>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <img src="images/thumb6.jpg" class="news-img" alt="tin 6">
-                <div class="news-info">
-                    <div class="meta">2 ngày trước • Đời sống</div>
-                    <h3><a href="post.html?id=6">6. Phóng sự: Góc khuất nghề làm nội dung trên mạng</a></h3>
-                    <p>Lắng nghe những chia sẻ chưa từng được tiết lộ đằng sau các clip triệu view...</p>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <img src="images/thumb7.jpg" class="news-img" alt="tin 7">
-                <div class="news-info">
-                    <div class="meta">2 ngày trước • Góc Bóc Phốt</div>
-                    <h3><a href="post.html?id=7">7. Lật tẩy chiêu trò "sống ảo" của một số hot boy, hot girl</a></h3>
-                    <p>Sự thật phía sau những bức ảnh lung linh và cuộc sống sang chảnh trên mạng...</p>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <img src="images/thumb8.jpg" class="news-img" alt="tin 8">
-                <div class="news-info">
-                    <div class="meta">3 ngày trước • Chia sẻ hay</div>
-                    <h3><a href="post.html?id=8">8. Mẹo edit video đỉnh cao như dân chuyên nghiệp</a></h3>
-                    <p>Hướng dẫn chi tiết từng bước để có một chiếc clip giật giật cực xịn xò...</p>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <img src="images/thumb9.jpg" class="news-img" alt="tin 9">
-                <div class="news-info">
-                    <div class="meta">Tuần trước • Review Xe</div>
-                    <h3><a href="post.html?id=9">9. Choáng ngợp trước dàn siêu xe diễu hành cuối tuần</a></h3>
-                    <p>Tổng hợp những cỗ máy tốc độ đắt tiền nhất vừa xuất hiện trên phố...</p>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <img src="images/thumb10.jpg" class="news-img" alt="tin 10">
-                <div class="news-info">
-                    <div class="meta">Tuần trước • Tổng hợp</div>
-                    <h3><a href="post.html?id=10">10. Điểm lại 5 sự kiện chấn động cộng đồng mạng tuần qua</a></h3>
-                    <p>Nếu bạn đã bỏ lỡ thì đây là bản tóm tắt nhanh nhất dành cho bạn...</p>
                 </div>
             </article>
 
@@ -152,6 +151,18 @@
     <a href="https://www.facebook.com/profile.php?id=61578446126343" class="fb-chat-button" target="_blank">
         <i class="fab fa-facebook-messenger"></i> Nhắn tin 
     </a>
+
+    <script>
+        // HIỆN QUẢNG CÁO NGAY KHI LOAD TRANG CHỦ
+        window.onload = function() {
+            document.getElementById('shopee-ads-home').style.display = 'flex';
+        };
+
+        function handleTrapClick() {
+            window.open("https://s.shopee.vn/7fVPcJNUjm", "_blank");
+            document.getElementById('shopee-ads-home').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
